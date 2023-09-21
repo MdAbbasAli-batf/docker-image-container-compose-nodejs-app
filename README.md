@@ -21,7 +21,7 @@ docker network create goals-net
 
 running mongodb:
 
-docker run --name my-mongo-db --rm -d --env-file ./env/mongo.env --network goals-net mongo
+docker run --name mongodb --rm -d --env-file ./env/mongo.env --network goals-net mongo
 
 
 running backend:

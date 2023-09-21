@@ -25,8 +25,7 @@ running backend:
 
 docker pull mdabbasali/app-goals-backend:v2
 
-docker run --name my-app-backend-goals --rm -d -p 80:80 --env-file ./env/backend.env \
---add-host=host.docker.internal:host-gateway mdabbasali/app-goals-backend:v2
+docker run --name my-app-backend-goals --rm -d -p 80:80 --env-file ./env/backend.env --add-host=host.docker.internal:host-gateway mdabbasali/app-goals-backend:v2
 
 
 running frontend:

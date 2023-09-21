@@ -18,7 +18,7 @@ The backend (mid-tier) will be able to access the db
 
 ## Option-A: using docker run command
 
-***First download the env folder at your own host, then run the below commands where the env directory is present.***
+***First download the env folder at your own localhost, then run the below commands where the env directory is present.***
 
 Then run:
 
@@ -46,7 +46,7 @@ Then run:
 
 ## Option-B: using docker-compose
 
-***First download the env folder and docker-compose.yaml file to your own host, then run the below commands where the env directory and docker-compose.yaml are present.***
+***First download the env folder and docker-compose.yaml file to your own localhost, then run the below commands where the env directory and docker-compose.yaml are present.***
 
 - docker-compose command must be installed in your host already.
   

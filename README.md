@@ -18,7 +18,7 @@ First download the env folder at your own host, then run the below commands wher
 
 running mongodb:
 
-docker run --name my-mongo-db --rm -d --env-file ./env/mongo.env --network goals-net  -p 27017:27017 mongo
+docker run --name my-mongo-db --rm -d --env-file ./env/mongo.env --network goals-net mongo
 
 
 running backend:

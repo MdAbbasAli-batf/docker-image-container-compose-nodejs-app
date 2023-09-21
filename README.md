@@ -15,7 +15,8 @@ The backend (mid-tier) will be able to access the db
 In order to run this in docker, simply type 5 commands
 
 First download the env folder at your own host, then run the below commands where the env directory is present.
-Then
+Then run:
+
 docker network create goals-net
 
 running mongodb:

@@ -12,8 +12,9 @@ frontend will be able to access the mid-tier (backend)
 The backend (mid-tier) will be able to access the db
 
 
-In order to run this in docker, simply type 
+In order to run this in docker, simply type 5 commands
 
+First download the env folder at your own host, then run the below commands where the env directory is present.
 
 running mongodb:
 

@@ -1,0 +1,47 @@
+
+docker run --name my-mongo-db --rm -d -p 27017:27017 mongo
+docker run --name my-mongo-db --rm -d --env-file ./env/mongo.env  -p 27017:27017 mongo
+
+
+
+`mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_URL}/${process.env.MONGODB_NAME}?retryWrites=true&w=majority`,
+
+
+docker build -t mdabbasali/app-goals-backend:v2 .
+docker build -f backend/Dockerfile -t mdabbasali/app-backend-goals:v2 ./backend
+docker pull mdabbasali/app-goals-backend:v2
+docker run --name my-app-backend-goals --rm -d -p 80:80 --env-file ./env/backend.env \
+--add-host=host.docker.internal:host-gateway mdabbasali/app-backend-goals:v2
+docker image tag app-backend-goals mdabbasali/app-goals-backend:1
+docker push mdabbasali/app-goals-backend:v2
+docker pull mdabbasali/app-goals-backend:1
+docker run --name my-app-backend-goals --rm -d -p 80:80 \
+--add-host=host.docker.internal:host-gateway mdabbasali/app-goals-backend:1
+
+
+docker build -t app-frontend-goals-react-60 .
+docker run --name my-app-frontend-goals-react --rm -d -p 3000:3000 -it app-frontend-goals-react-10
+docker image tag app-frontend-goals-react-10 mdabbasali/app-goals-frontend:1
+docker push mdabbasali/app-goals-frontend:1
+docker pull mdabbasali/app-goals-frontend:1
+docker run --name my-app-frontend-goals-react --rm -d -p 3000:3000 -it mdabbasali/app-goals-frontend:1
+
+
+docker push mdabbasali/app-goals-backend:tagname
+docker push mdabbasali/app-goals-frontend:tagname
+
+docker build -f frontend/Dockerfile -t mdabbasali/app-goals-frontend:v2 ./frontend
+docker build -f frontend/Dockerfile.prod -t mdabbasali/app-goals-frontend:v2 ./frontend
+docker build -t mdabbasali/app-goals-frontend:v2 .
+docker push mdabbasali/app-goals-frontend:v2
+docker pull mdabbasali/app-goals-frontend:v2
+docker run --name my-app-frontend-goals-react --rm -d -p 3000:80 -it mdabbasali/app-goals-frontend:v2
+
+
+docker history app-frontend-goals-react
+docker build --build-arg HOST_IP=$(hostname -I | awk '{print $1}') -t app-frontend-goals-react . 
+docker run --name my-app-frontend-goals-react --rm -d -p 3000:3000 -it --add-host=host.docker.internal:host-gateway app-frontend-goals-react
+docker run --name my-app-frontend-goals-react --rm -d -p 3000:3000 -it -e HOST_IP=$(hostname -I | awk '{print $1}') app-frontend-goals-react
+
+
+

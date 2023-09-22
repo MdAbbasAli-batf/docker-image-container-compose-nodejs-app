@@ -6,7 +6,7 @@
 
 - db (mongodb)
 
-
+check
 
 frontend will be able to access the mid-tier (backend)
 The backend (mid-tier) will be able to access the db

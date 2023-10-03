@@ -26,7 +26,7 @@ Then run:
 
 **running mongodb:**
 
-*docker run --name mongodb --rm -d --env-file ./env/mongo.env --network goals-net mongo*
+*docker run --name mongodb -v data:/data/db --rm -d --env-file ./env/mongo.env --network goals-net mongo*
 
 
 **running backend:**

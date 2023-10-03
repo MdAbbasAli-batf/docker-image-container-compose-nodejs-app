@@ -33,14 +33,14 @@ Then run:
 
 *docker pull mdabbasali/app-goals-backend:v2*
 
-*docker run --name my-app-backend-goals --rm -d -p 80:80 --env-file ./env/backend.env --network goals-net mdabbasali/app-goals-backend:v2*
+*docker run --name backend --rm -d --env-file ./env/backend.env --network goals-net mdabbasali/app-goals-backend:v2*
 
 
 **running frontend:**
 
-*docker pull mdabbasali/app-goals-frontend:v2*
+*docker pull mdabbasali/app-goals-frontend:v3*
 
-*docker run --name my-app-frontend-goals-react --rm -d -p 3000:80 -it mdabbasali/app-goals-frontend:v2*
+*docker run --name my-app-frontend-goals-react --rm -d -p 3000:80 --network goals-net -it mdabbasali/app-goals-frontend:v3*
 
 
 
@@ -65,17 +65,21 @@ The front end uses ReactJS and built from a node:14-alpine and then deployed und
 
 
 # Note:
-If you run those docker commands in your **Windows host**
+If you run those docker commands in your **Windows host** (if Docker is installed in Windows)
 
-then you can browse the frontend app as http://localhost:3000
+then you can browse the frontend app as 
+  - http://localhost:3000
+
+    or as by IP
+  - http://<windows_host_IP>:3000
 
 or
-If you want to run those docker commands in a **remote Linux host** (access via SSH) then 
+If you want to run those docker commands in a **remote Linux host** [where Docker is installed in Linux platform] (you access it via SSH from your Windows host) then 
+Then, browse this address [in the Windows host (the host from where you are launching the SSH client)] 
+  - http://<remote_linux_host_IP>:3000
 
-  - firefox has to be already installed in that remote Linux host (if not then to install run: *yum install -y firefox*)
-  
-  - If X11 forwarding is already enabled in your remote Linux host then you need to export the display to your Windows host. To do that run this command (in the remote Linux host) $ *export DISPLAY=Windows_Host_IP:0.0* 
-  
-  - $ *firefox*  (run this command in the remote Linux host), It should pop up Firefox browser on your Windows host. 
-   
-  - Then, browse this address in Firefox (already popped up in the Windows host from where you are launching the SSH client) http://localhost:3000 
+Make sure that the port 3000 is allowed in your remote Linux host firewalld service.
+
+*sudo firewall-cmd --add-port=3000/tcp --permanent*
+
+*sudo firewall-cmd --reload*

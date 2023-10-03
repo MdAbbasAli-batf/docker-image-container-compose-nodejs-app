@@ -12,13 +12,11 @@ services:
       - logs:/app/logs
     env_file: 
       - ./env/backend.env
-    ports:
-      - 80:80
     depends_on:
       - mongodb
 
   frontend:
-    image: mdabbasali/app-goals-frontend:v2
+    image: mdabbasali/app-goals-frontend:v3
     ports:
       - 3000:80
     stdin_open: true
